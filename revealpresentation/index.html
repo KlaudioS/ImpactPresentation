@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Driving Scalable, Error-Free Infra with Agentic AI</title>
+  <link rel="stylesheet" href="https://unpkg.com/reveal.js@4.6.1/dist/reveal.css">
+  <link rel="stylesheet" href="https://unpkg.com/reveal.js@4.6.1/dist/theme/white.css" id="theme">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+      
+      <!-- Slide 1: Title & Story Hook -->
+      <section class="title-slide" data-speaker-note="Open with a brief anecdote—e.g. a mission-critical outage caused by a mis-typed HCL variable.">
+        <div class="company-branding">
+          <div class="logo">AgentOps</div>
+        </div>
+        <h1>Driving Scalable, Error-Free Infra with Agentic AI</h1>
+        <h2 class="subtitle">Today's cloud complexity demands automation that's both powerful and trustworthy</h2>
+        
+        <div class="pain-points-visual">
+          <div class="pain-point">
+            <div class="icon">🚨</div>
+            <div class="label">Security Alerts</div>
+          </div>
+          <div class="pain-point">
+            <div class="icon">❌</div>
+            <div class="label">Failed Deployments</div>
+          </div>
+          <div class="pain-point">
+            <div class="icon">📊</div>
+            <div class="label">Spreadsheet Chaos</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Slide 2: Agenda & Business Outcomes -->
+      <section class="agenda-slide">
+        <h2>Today's Journey & What You'll Take Away</h2>
+        <div class="agenda-layout">
+          <div class="agenda-items">
+            <ul>
+              <li><span class="bullet-icon">📋</span> Why Terraform/HCL matters—and why it trips you up</li>
+              <li><span class="bullet-icon">🤖</span> Agentic AI: the difference between buzz and real autonomy</li>
+              <li><span class="bullet-icon">🔄</span> Our end-to-end workflow & dev cycle</li>
+              <li><span class="bullet-icon">🏗️</span> Architecture: simple view → deep-dive</li>
+              <li><span class="bullet-icon">👥</span> Personas, challenges, ROI</li>
+              <li><span class="bullet-icon">🎮</span> Live Demo highlights</li>
+              <li><span class="bullet-icon">🚀</span> Competitive edge & next steps</li>
+            </ul>
+          </div>
+          <div class="business-outcomes">
+            <h3>Business Outcomes</h3>
+            <div class="outcome-items">
+              <div class="outcome">
+                <span class="outcome-icon">⚡</span>
+                <span>Faster deployment</span>
+              </div>
+              <div class="outcome">
+                <span class="outcome-icon">🛡️</span>
+                <span>Fewer incidents</span>
+              </div>
+              <div class="outcome">
+                <span class="outcome-icon">💰</span>
+                <span>Cost savings</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Slide 3: Terraform & HCL Primer -->
+      <section class="split-slide">
+        <h2>Infrastructure as Code: Power & Complexity</h2>
+        <div class="split-layout">
+          <div class="split-left">
+            <h3>HCL 101</h3>
+            <p>What HCL is, why it's the industry standard</p>
+            <div class="code-example">
+              <pre><code class="language-hcl">resource "aws_instance" "web" {
+  ami           = "ami-a1b2c3d4"
+  instance_type = "t2.micro"
+  
+  tags = {
+    Name = "WebServer"
+    Environment = "prod"
+  }
+}</code></pre>
+            </div>
+          </div>
+          <div class="split-right">
+            <h3>HCL Pitfalls</h3>
+            <ul>
+              <li>Nested modules complexity</li>
+              <li>Typos and syntax errors</li>
+              <li>Configuration drift</li>
+              <li>Merge conflicts</li>
+            </ul>
+            <div class="error-example">
+              <div class="error-line">Error: Invalid reference</div>
+              <div class="error-detail">Cannot find reference to variable "my_varable"</div>
+              <div class="error-hint">Did you mean "my_variable"?</div>
+            </div>
+          </div>
+        </div>
+        <div class="story-callout">
+          <p><em>Even small mistakes in HCL can cost hours of downtime.</em></p>
+        </div>
+      </section>
+
+      <!-- Slide 4: What Is Agentic AI? -->
+      <section class="definition-slide">
+        <h2>Beyond Bots—True Autonomy</h2>
+        <div class="definition-layout">
+          <div class="definition-section">
+            <h3>Agentic AI Defined</h3>
+            <p class="definition">Actors that perceive, decide, and act end-to-end</p>
+            <div class="characteristics">
+              <div class="char-item">
+                <span class="char-icon">🧠</span>
+                <span>Autonomous decision making</span>
+              </div>
+              <div class="char-item">
+                <span class="char-icon">📚</span>
+                <span>Continuous learning</span>
+              </div>
+              <div class="char-item">
+                <span class="char-icon">🔧</span>
+                <span>Self-correcting execution</span>
+              </div>
+            </div>
+          </div>
+          <div class="comparison-section">
+            <h3>Real Agents vs Pseudo-Agents</h3>
+            <table class="comparison-table">
+              <thead>
+                <tr>
+                  <th>Capability</th>
+                  <th>Real Agents</th>
+                  <th>Pseudo-Agents</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Decision Making</td>
+                  <td class="good">Autonomous</td>
+                  <td class="poor">Pre-programmed</td>
+                </tr>
+                <tr>
+                  <td>Learning</td>
+                  <td class="good">Continuous</td>
+                  <td class="poor">Static</td>
+                </tr>
+                <tr>
+                  <td>Error Handling</td>
+                  <td class="good">Self-correcting</td>
+                  <td class="poor">Manual intervention</td>
+                </tr>
+              </tbody>
+            </table>
+            <p class="key-message">Not all automations are created equal</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Slide 5: Technical Development Cycle -->
+      <section class="flow-slide">
+        <h2>From Code to Cloud—Our Dev Cycle</h2>
+        <div class="flow-diagram">
+          <div class="flow-step">
+            <div class="step-number">1</div>
+            <div class="step-title">Write HCL</div>
+            <div class="step-bottleneck">Manual coding</div>
+          </div>
+          <div class="flow-arrow">→</div>
+          <div class="flow-step">
+            <div class="step-number">2</div>
+            <div class="step-title">Init & Plan</div>
+            <div class="step-bottleneck">Validation errors</div>
+          </div>
+          <div class="flow-arrow">→</div>
+          <div class="flow-step">
+            <div class="step-number">3</div>
+            <div class="step-title">Peer Review</div>
+            <div class="step-bottleneck">Delay bottleneck</div>
+          </div>
+          <div class="flow-arrow">→</div>
+          <div class="flow-step">
+            <div class="step-number">4</div>
+            <div class="step-title">Apply</div>
+            <div class="step-bottleneck">Runtime errors</div>
+          </div>
+          <div class="flow-arrow">→</div>
+          <div class="flow-step">
+            <div class="step-number">5</div>
+            <div class="step-title">Monitor & Drift Detect</div>
+            <div class="step-bottleneck">Manual checks</div>
+          </div>
+        </div>
+        <div class="bottleneck-note">
+          <p><em>Highlight where manual bottlenecks and error-risks occur</em></p>
+        </div>
+      </section>
+
+      <!-- Slide 6: Value Proposition -->
+      <section class="pillars-slide">
+        <h2>Minimizing Error, Maximizing Best Practices</h2>
+        <div class="pillars-container">
+          <div class="pillar">
+            <div class="pillar-icon">🛡️</div>
+            <h3>Automated Guardrails</h3>
+            <p>Linting, policy as code</p>
+          </div>
+          <div class="pillar">
+            <div class="pillar-icon">🔄</div>
+            <h3>Idempotent Execution</h3>
+            <p>Safe retries, rollbacks</p>
+          </div>
+          <div class="pillar">
+            <div class="pillar-icon">🔄</div>
+            <h3>Continuous State Sync</h3>
+            <p>No drift</p>
+          </div>
+        </div>
+        <div class="business-impact">
+          <h3>Business Impact</h3>
+          <div class="impact-grid">
+            <div class="impact-item">
+              <span class="impact-icon">💰</span>
+              <span>Lower cost of ops</span>
+            </div>
+            <div class="impact-item">
+              <span class="impact-icon">📞</span>
+              <span>Fewer escalations</span>
+            </div>
+            <div class="impact-item">
+              <span class="impact-icon">📋</span>
+              <span>Easier audits</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Slide 7: Welcoming Workflow -->
+      <section class="workflow-slide">
+        <h2>Onboarding in 3 Clicks</h2>
+        <div class="workflow-steps">
+          <div class="workflow-step">
+            <div class="step-number">1</div>
+            <h3>Welcome Screen</h3>
+            <div class="mockup">
+              <div class="mockup-header">Pick cloud & repo</div>
+              <div class="mockup-content">
+                <div class="form-group">
+                  <label>Cloud Provider</label>
+                  <select>
+                    <option>AWS</option>
+                    <option>GCP</option>
+                    <option>Azure</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label>Repository</label>
+                  <div class="repo-input">github.com/myorg/infra</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="workflow-step">
+            <div class="step-number">2</div>
+            <h3>Define Scope</h3>
+            <div class="mockup">
+              <div class="mockup-header">Select modules to manage</div>
+              <div class="mockup-content">
+                <div class="module-list">
+                  <div class="module selected">
+                    <input type="checkbox" checked> VPC Module
+                  </div>
+                  <div class="module selected">
+                    <input type="checkbox" checked> EC2 Instances
+                  </div>
+                  <div class="module">
+                    <input type="checkbox"> RDS Databases
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="workflow-step">
+            <div class="step-number">3</div>
+            <h3>Go</h3>
+            <div class="mockup">
+              <div class="mockup-header">Agent spins up, auto-discovers resources</div>
+              <div class="mockup-content">
+                <div class="progress-bar">
+                  <div class="progress-fill"></div>
+                </div>
+                <div class="discovery-status">
+                  <span class="status-icon">🔍</span>
+                  <span>Discovering resources...</span>
+                </div>
+                <div class="resource-count">
+                  <div class="count">24</div>
+                  <div class="count-label">Resources found</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="narrative">
+          <p><em>Even a non-technical manager can kick off a discovery run</em></p>
+        </div>
+      </section>
+
+      <!-- Slide 8: Architecture Overview -->
+      <section class="architecture-slide">
+        <h2>High-Level Architecture</h2>
+        <div class="architecture-diagram">
+          <div class="arch-layer">
+            <div class="layer-icon">🤖</div>
+            <h3>Agent Layer</h3>
+            <p>AI-powered decision making and orchestration</p>
+          </div>
+          <div class="layer-connector">↓</div>
+          <div class="arch-layer">
+            <div class="layer-icon">🔧</div>
+            <h3>Tool/Connector Layer</h3>
+            <p>Integration with Terraform, cloud providers, CI/CD</p>
+          </div>
+          <div class="layer-connector">↓</div>
+          <div class="arch-layer">
+            <div class="layer-icon">💾</div>
+            <h3>State & Logging Layer</h3>
+            <p>Persistent state management and audit logging</p>
+          </div>
+        </div>
+        <div class="architecture-callout">
+          <span class="callout-icon">✅</span>
+          <span>All built in-house—no black-box third-party</span>
+        </div>
+      </section>
+
+      <!-- Slide 9: Architecture Deep-Dive -->
+      <section class="deep-dive-slide">
+        <h2>Under the Hood</h2>
+        <div class="swim-lanes">
+          <div class="swim-lane">
+            <div class="lane-header">
+              <div class="lane-icon">1️⃣</div>
+              <h4>Day 1 Agent</h4>
+            </div>
+            <div class="lane-body">
+              <p>Initial inventory & mapping</p>
+              <div class="component-boxes">
+                <div class="component">Discovery</div>
+                <div class="component">Mapping</div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="swim-lane">
+            <div class="lane-header">
+              <div class="lane-icon">2️⃣</div>
+              <h4>Day 2 Agent</h4>
+            </div>
+            <div class="lane-body">
+              <p>Plan, apply, rollback</p>
+              <div class="component-boxes">
+                <div class="component">Planning</div>
+                <div class="component">Execution</div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="swim-lane">
+            <div class="lane-header">
+              <div class="lane-icon">🔌</div>
+              <h4>Tool Plugins</h4>
+            </div>
+            <div class="lane-body">
+              <p>Terraform CLI, Cloud SDKs, Custom APIs</p>
+              <div class="plugin-grid">
+                <div class="plugin">Terraform</div>
+                <div class="plugin">AWS</div>
+                <div class="plugin">GCP</div>
+                <div class="plugin">Azure</div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="swim-lane">
+            <div class="lane-header">
+              <div class="lane-icon">💾</div>
+              <h4>State Store</h4>
+            </div>
+            <div class="lane-body">
+              <p>FAISS + Postgres for audit trail</p>
+              <div class="component-boxes">
+                <div class="component">Vector DB</div>
+                <div class="component">Postgres</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Slide 10: Meet Our Agents -->
+      <section class="agents-table-slide">
+        <h2>Agent Portfolio & Functions</h2>
+        <table class="agents-table">
+          <thead>
+            <tr>
+              <th>Agent Name</th>
+              <th>Role</th>
+              <th>Key Tools</th>
+              <th>Why We Built It</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Day 1</strong></td>
+              <td>Discovery & Triage</td>
+              <td>AWS/GCP/Azure SDKs</td>
+              <td>Unified cross-cloud view</td>
+            </tr>
+            <tr>
+              <td><strong>Day 2</strong></td>
+              <td>Planning & Execution</td>
+              <td>Terraform CLI, Rollbacks</td>
+              <td>Safe, idempotent changes</td>
+            </tr>
+            <tr>
+              <td><strong>Policy AI</strong></td>
+              <td>Compliance & Best Practices</td>
+              <td>OPA, Sentinel plugin</td>
+              <td>Prevent misconfigurations</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <!-- Slide 11: Persona Journeys -->
+      <section class="personas-slide">
+        <h2>From Junior to Senior—We've Got You Covered</h2>
+        <div class="personas-grid">
+          <div class="persona">
+            <div class="persona-avatar">👨‍💻</div>
+            <h3>Junior Dev</h3>
+            <div class="persona-content">
+              <h4>Pain Points</h4>
+              <p>Learning curve, complex configurations</p>
+              <h4>How We Help</h4>
+              <p>Guided workflows, safety guardrails</p>
+            </div>
+          </div>
+          
+          <div class="persona">
+            <div class="persona-avatar">⚙️</div>
+            <h3>DevOps Engineer</h3>
+            <div class="persona-content">
+              <h4>Pain Points</h4>
+              <p>Manual drift detection, repetitive tasks</p>
+              <h4>How We Help</h4>
+              <p>Auto-remediation, AI-assisted debugging</p>
+            </div>
+          </div>
+          
+          <div class="persona">
+            <div class="persona-avatar">👨‍💼</div>
+            <h3>Infra Lead</h3>
+            <div class="persona-content">
+              <h4>Pain Points</h4>
+              <p>Audit prep, resource governance</p>
+              <h4>How We Help</h4>
+              <p>Comprehensive audit logs, policy enforcement</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Slide 12: Demonstrating Environments -->
+      <section class="environments-slide">
+        <h2>Multi-Env in Action</h2>
+        <div class="pipeline-flow">
+          <div class="environment dev">
+            <div class="env-icon">🧪</div>
+            <h3>Development</h3>
+            <p>Fast iteration</p>
+            <p>Experimentation</p>
+          </div>
+          <div class="pipeline-arrow">→</div>
+          <div class="environment staging">
+            <div class="env-icon">🔍</div>
+            <h3>Staging</h3>
+            <p>Testing</p>
+            <p>Validation</p>
+          </div>
+          <div class="pipeline-arrow">→</div>
+          <div class="environment prod">
+            <div class="env-icon">🚀</div>
+            <h3>Production</h3>
+            <p>Reliability</p>
+            <p>Monitoring</p>
+          </div>
+        </div>
+        <div class="pipeline-callout">
+          <span class="callout-icon">✅</span>
+          <span>Same agents, same code—zero-touch promotion</span>
+        </div>
+      </section>
+
+      <!-- Slide 13: Competitive Differentiation -->
+      <section class="competitive-slide">
+        <h2>Why We're Unique</h2>
+        <div class="comparison-chart">
+          <div class="comparison-headers">
+            <div class="comp-header">DIY</div>
+            <div class="comp-header">N8N/CrewAI</div>
+            <div class="comp-header highlight">Our Platform</div>
+          </div>
+          <div class="comparison-metrics">
+            <div class="metric-row">
+              <div class="metric-label">Integration</div>
+              <div class="metric-bars">
+                <div class="bar poor">Limited</div>
+                <div class="bar fair">Moderate</div>
+                <div class="bar excellent">Extensive</div>
+              </div>
+            </div>
+            <div class="metric-row">
+              <div class="metric-label">Autonomy</div>
+              <div class="metric-bars">
+                <div class="bar poor">Low</div>
+                <div class="bar fair">Medium</div>
+                <div class="bar excellent">High</div>
+              </div>
+            </div>
+            <div class="metric-row">
+              <div class="metric-label">Reliability</div>
+              <div class="metric-bars">
+                <div class="bar poor">Variable</div>
+                <div class="bar fair">Good</div>
+                <div class="bar excellent">Excellent</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="advantages">
+          <div class="advantage">
+            <span class="adv-icon">🏠</span>
+            <span><strong>100% In-House Code</strong>—no hidden costs or vendor lock-in</span>
+          </div>
+          <div class="advantage">
+            <span class="adv-icon">🔌</span>
+            <span><strong>Modular & Extensible</strong>—swap in third-party if you want</span>
+          </div>
+          <div class="advantage">
+            <span class="adv-icon">🌐</span>
+            <span><strong>Industry-Agnostic</strong>—finance, retail, gov't, etc.</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Slide 14: Live Demo Flow -->
+      <section class="demo-slide">
+        <h2>Live Demo Flow</h2>
+        <div class="demo-grid">
+          <div class="demo-step">
+            <div class="demo-number">1</div>
+            <h3>List RDS instances</h3>
+            <div class="demo-mockup">
+              <div class="terminal">
+                <div class="terminal-line">$ agent discover --service=rds</div>
+                <div class="terminal-line">Found 4 RDS instances:</div>
+                <div class="terminal-line">- db-prod-1 (mysql 8.0)</div>
+                <div class="terminal-line">- analytics-db (postgres 14)</div>
+              </div>
+            </div>
+            <p class="demo-explanation">Shows inventory agent</p>
+          </div>
+          
+          <div class="demo-step">
+            <div class="demo-number">2</div>
+            <h3>Click Plan</h3>
+            <div class="demo-mockup">
+              <div class="terraform-diff">
+                <div class="diff-line add">+ aws_rds_instance.replica</div>
+                <div class="diff-line change">~ aws_rds_instance.main (tags)</div>
+                <div class="diff-summary">Plan: 1 to add, 1 to change</div>
+              </div>
+            </div>
+            <p class="demo-explanation">See Terraform diff</p>
+          </div>
+          
+          <div class="demo-step">
+            <div class="demo-number">3</div>
+            <h3>Safety drill</h3>
+            <div class="demo-mockup">
+              <div class="safety-simulation">
+                <div class="failure-msg">⚠️ Simulated failure</div>
+                <div class="rollback-msg">↩️ Rollback in action</div>
+                <div class="success-msg">✅ Recovery complete</div>
+              </div>
+            </div>
+            <p class="demo-explanation">Rollback demonstration</p>
+          </div>
+          
+          <div class="demo-step">
+            <div class="demo-number">4</div>
+            <h3>Verify drift</h3>
+            <div class="demo-mockup">
+              <div class="drift-check">
+                <div class="check-line">✅ No drift detected</div>
+                <div class="check-line">📋 State synchronized</div>
+                <div class="check-timestamp">Last check: Just now</div>
+              </div>
+            </div>
+            <p class="demo-explanation">Drift is corrected</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Slide 15: Business Impact & Next Steps -->
+      <section class="conclusion-slide">
+        <h2>ROI & Roadmap</h2>
+        <div class="metrics-showcase">
+          <div class="metric-card">
+            <div class="metric-number">50%</div>
+            <div class="metric-label">fewer mis-configs</div>
+            <div class="metric-visual"></div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-number">30%</div>
+            <div class="metric-label">faster on-boarding</div>
+            <div class="metric-visual"></div>
+          </div>
+        </div>
+        
+        <div class="next-steps">
+          <h3>Next Steps</h3>
+          <div class="steps-grid">
+            <div class="step-item">
+              <span class="step-icon">📅</span>
+              <span>Pilot dates</span>
+            </div>
+            <div class="step-item">
+              <span class="step-icon">🔄</span>
+              <span>Integration with existing tools</span>
+            </div>
+            <div class="step-item">
+              <span class="step-icon">📊</span>
+              <span>Executive dashboard rollout</span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="cta-buttons">
+          <button class="btn btn-primary">Request Demo</button>
+          <button class="btn btn-secondary">Contact Sales</button>
+        </div>
+      </section>
+
+    </div>
+  </div>
+
+  <script src="https://unpkg.com/reveal.js@4.6.1/dist/reveal.js"></script>
+  <script src="https://unpkg.com/reveal.js@4.6.1/plugin/notes/notes.js"></script>
+  <script src="https://unpkg.com/reveal.js@4.6.1/plugin/highlight/highlight.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
